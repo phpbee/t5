@@ -29,5 +29,3 @@ tag_rest="$r/$p-rest:$b"
 docker build -t $tag_rest .
 docker push $tag_rest
 
-#ssh zaza@ongophotos.com 'docker-compose  -f ongo.yml pull && docker-compose  -f ongo.yml up -d'
-
