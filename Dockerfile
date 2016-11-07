@@ -1,4 +1,4 @@
-FROM java:8
+FROM java:7
 
 COPY ./build/libs/t5-0.1.0.jar /opt/t5/t5-0.1.0.jar
 
