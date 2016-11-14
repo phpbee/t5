@@ -4,7 +4,6 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
-        classpath("mysql:mysql-connector-java:5.1.31")
     }
 }
 
@@ -26,10 +25,5 @@ targetCompatibility = 1.7
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("org.springframework.boot:spring-boot-starter-jdbc")
-    compile("org.springframework:spring-orm")
-    compile("mysql:mysql-connector-java")
-    compile("commons-dbcp:commons-dbcp")
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
