@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * Created by alexk on 11/14/16.
  */
-public interface TransactionRepository extends CrudRepository<TransactionEntity, Long> {
+public interface TransactionRepository extends TableRepository<TransactionEntity, Long> {
     TransactionEntity findById(Long id);
 }
