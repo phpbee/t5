@@ -29,7 +29,7 @@ public class TransactionController {
     }
 
     @RequestMapping(value="/transaction/{id}", method=RequestMethod.GET)
-    public TransactionEntity findById(@PathVariable(value="id") Long id) {
+    public TransactionEntity findById(@PathVariable(value="id") String id) {
         return transactionRepository.findById(id);
     }
 
