@@ -31,7 +31,7 @@ public class TransactionEntity {
         return created;
     }
 
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Europe/Moscow")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
     public Date getCreatedDate() {
         return new Date(created);
     }
