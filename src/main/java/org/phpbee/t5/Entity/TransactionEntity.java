@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.Date;
 
 @Entity
@@ -16,31 +17,23 @@ public class TransactionEntity {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "created", nullable = false, columnDefinition="TIMESTAMP")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date created;
-
-    public TransactionEntity() {
-    }
+    @Column(name = "created", nullable = false)
+    private Long created = new Date().getTime();
 
     public String getId() {
         return id;
     }
 
-    public Date getCreated() {
+    public TransactionEntity() {
+    }
+
+    public Long getCreated() {
         return created;
     }
 
-    @PrePersist
-    protected void onCreate() {
-        created = new Date();
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Europe/Moscow")
+    public Date getCreatedDate() {
+        return new Date(created);
     }
-
-
-//
-//    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss", timezone="Europe/Moscow")
-//    public Date getCreatedDate() {
-//        return created;
-//    }
 
 }
