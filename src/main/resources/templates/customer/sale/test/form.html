@@ -3,10 +3,26 @@
 <form action="#" th:action="@{/customer/sale/test}" th:object="${form}" method="post">
     <table>
         <tr>
-            <td>Name:</td>
+            <td>Transaction ID:</td>
             <td><input type="text" th:field="*{transactionId}" /></td>
-            <td th:if="${#fields.hasErrors('transactionId')}" th:errors="*{transactionId}">Name Error</td>
+            <td th:if="${#fields.hasErrors('transactionId')}" th:errors="*{transactionId}">Transaction ID Error</td>
         </tr>
+        <tr>
+            <td>Status:</td>
+            <td>
+
+                <ul>
+                    <li th:each="ty : ${requestedStatuses}">
+                        <input type="radio" th:field="*{requestedStatus}" th:value="${ty}" />
+                        <label th:for="${#ids.prev('requestedStatus')}" th:text="${ty}">Wireframe</label>
+                    </li>
+                </ul>
+
+            </td>
+            <td th:if="${#fields.hasErrors('requestedStatus')}" th:errors="*{requestedStatus}">Status Error</td>
+        </tr>
+        
+        
         <tr>
             <td><button type="submit">Submit</button></td>
         </tr>

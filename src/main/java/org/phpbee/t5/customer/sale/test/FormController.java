@@ -3,10 +3,13 @@ package org.phpbee.t5.customer.sale.test;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import javax.validation.Valid;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 public class FormController extends WebMvcConfigurerAdapter {
@@ -29,5 +32,10 @@ public class FormController extends WebMvcConfigurerAdapter {
         }
 
         return "redirect:/results";
+    }
+
+    @ModelAttribute("requestedStatuses")
+    public List<String> populateFeatures() {
+        return Arrays.asList(RequestedStatuses.ALL);
     }
 }
