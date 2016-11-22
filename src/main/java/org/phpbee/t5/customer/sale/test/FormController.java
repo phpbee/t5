@@ -1,5 +1,8 @@
 package org.phpbee.t5.customer.sale.test;
 
+import org.phpbee.t5.Validator.ValueInListConstraintException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +16,14 @@ import java.util.List;
 
 @Controller
 public class FormController extends WebMvcConfigurerAdapter {
+
+    @Bean
+    public FormLists requestedStatuses() {
+        return new FormLists();
+    }
+
+    @Autowired
+    FormLists valueInListConstraintValidatorLists;
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -35,7 +46,7 @@ public class FormController extends WebMvcConfigurerAdapter {
     }
 
     @ModelAttribute("requestedStatuses")
-    public List<String> populateFeatures() {
-        return Arrays.asList(RequestedStatuses.ALL);
+    public List<String> populateFeatures() throws ValueInListConstraintException {
+        return Arrays.asList(valueInListConstraintValidatorLists.get("RequestedStatuses"));
     }
 }

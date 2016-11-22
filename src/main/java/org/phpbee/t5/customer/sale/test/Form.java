@@ -3,10 +3,10 @@ package org.phpbee.t5.customer.sale.test;
 import org.phpbee.t5.Validator.BusinessLogicChecks;
 import org.phpbee.t5.Validator.FormatChecks;
 import org.phpbee.t5.Validator.TransactionExistsConstraint;
+import org.phpbee.t5.Validator.ValueInListConstraint;
 
 import javax.validation.GroupSequence;
 import javax.validation.constraints.NotNull;
-import java.util.Arrays;
 
 @GroupSequence(value = {Form.class, FormatChecks.class, BusinessLogicChecks.class})
 public class Form {
@@ -15,7 +15,7 @@ public class Form {
     private String transactionId;
 
     @NotNull(groups = FormatChecks.class)
-    @ValueInListConstraint(groups = BusinessLogicChecks.class, values = {"Approved", "Declined"})
+    @ValueInListConstraint(groups = BusinessLogicChecks.class, name = "RequestedStatuses")
     private String requestedStatus;
 
     public String getTransactionId() {
