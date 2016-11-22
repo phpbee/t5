@@ -8,4 +8,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface TransactionRepository extends TableRepository<TransactionEntity, String> {
     TransactionEntity findById(String id);
+    boolean exists(String id);
 }

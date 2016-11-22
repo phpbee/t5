@@ -1,36 +1,25 @@
 package org.phpbee.t5.customer.sale.test;
 
-import javax.validation.constraints.Min;
+import org.phpbee.t5.Validator.BusinessLogicChecks;
+import org.phpbee.t5.Validator.FormatChecks;
+import org.phpbee.t5.Validator.TransactionExistsConstraint;
+
+import javax.validation.GroupSequence;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
-
+@GroupSequence(value = {Form.class, FormatChecks.class, BusinessLogicChecks.class})
 public class Form {
-    @NotNull
-    @Size(min=2, max=30)
-    private String name;
+    @NotNull(groups = FormatChecks.class)
+    @TransactionExistsConstraint(groups = BusinessLogicChecks.class)
+    private String transactionId;
 
-    @NotNull
-    @Min(18)
-    private Integer age;
-
-    public String getName() {
-        return this.name;
+    public String getTransactionId() {
+        return this.transactionId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
     }
 
-    public Integer getAge() {
-        return age;
-    }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String toString() {
-        return "Person(Name: " + this.name + ", Age: " + this.age + ")";
-    }
 }
