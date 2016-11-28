@@ -36,26 +36,6 @@ public class Sale {
         return new Date(created);
     }
 
-    private String requestedStatus = "";
-
-    public String getRequestedStatus() {
-        return requestedStatus;
-    }
-
-    public void setRequestedStatus(String requestedStatus) {
-        this.requestedStatus = requestedStatus;
-    }
-
-    private URI returnURL;
-
-    public URI getReturnURL() {
-        return returnURL;
-    }
-
-    public void setReturnURL(URI returnURL) {
-        this.returnURL = returnURL;
-    }
-
     private String authorizationClass;
 
     public String getAuthorizationClass() {

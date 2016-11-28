@@ -1,6 +1,5 @@
 package org.phpbee.t5.customer.sale.test;
 
-import org.phpbee.t5.Entity.Sale;
 import org.phpbee.t5.Entity.TransactionEntity;
 import org.phpbee.t5.Repository.TransactionRepository;
 import org.phpbee.t5.Validator.ValueInListConstraintException;
@@ -52,7 +51,7 @@ public final class FormController extends WebMvcConfigurerAdapter {
         }
         try {
             TransactionEntity transaction = transactionRepository.findById(form.getTransactionId());
-            Sale sale = new Sale(TestAuthorization.class.getName());
+            Sale sale = new Sale(Sale.class.getName());
 
             URI returnURL = new URI(form.getReturnURL());
             returnURL = appendUri(returnURL, "saleId=" + sale.getId());
