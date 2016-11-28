@@ -9,5 +9,5 @@ import java.io.Serializable;
  * Created by alexk on 11/15/16.
  */
 @NoRepositoryBean
-interface DocumentRepository<T, ID extends Serializable> extends MongoRepository<T, ID> {
+abstract interface DocumentRepository<T, ID extends Serializable> extends MongoRepository<T, ID> {
 }

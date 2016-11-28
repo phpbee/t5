@@ -8,6 +8,11 @@
             <td th:if="${#fields.hasErrors('transactionId')}" th:errors="*{transactionId}">Transaction ID Error</td>
         </tr>
         <tr>
+            <td>Return URL:</td>
+            <td><input type="text" th:field="*{returnURL}" /></td>
+            <td th:if="${#fields.hasErrors('returnURL')}" th:errors="*{returnURL}">Return URL Error</td>
+        </tr>
+        <tr>
             <td>Status:</td>
             <td>
 

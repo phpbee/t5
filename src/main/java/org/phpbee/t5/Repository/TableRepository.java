@@ -9,5 +9,5 @@ import java.io.Serializable;
  * Created by alexk on 11/15/16.
  */
 @NoRepositoryBean
-interface TableRepository<T, ID extends Serializable> extends CrudRepository<T, ID> {
+abstract interface TableRepository<T, ID extends Serializable> extends CrudRepository<T, ID> {
 }

@@ -1,5 +1,6 @@
 package org.phpbee.t5.customer.sale.test;
 
+import org.hibernate.validator.constraints.URL;
 import org.phpbee.t5.Validator.BusinessLogicChecks;
 import org.phpbee.t5.Validator.FormatChecks;
 import org.phpbee.t5.Validator.TransactionExistsConstraint;
@@ -13,6 +14,10 @@ public class Form {
     @NotNull(groups = FormatChecks.class)
     @TransactionExistsConstraint(groups = BusinessLogicChecks.class)
     private String transactionId;
+
+    @NotNull(groups = FormatChecks.class)
+    @URL(groups = FormatChecks.class)
+    private String returnURL;
 
     @NotNull(groups = FormatChecks.class)
     @ValueInListConstraint(groups = BusinessLogicChecks.class, name = "RequestedStatuses")
@@ -32,5 +37,13 @@ public class Form {
 
     public void setRequestedStatus(String requestedStatus) {
         this.requestedStatus = requestedStatus;
+    }
+
+    public String getReturnURL() {
+        return returnURL;
+    }
+
+    public void setReturnURL(String returnURL) {
+        this.returnURL = returnURL;
     }
 }

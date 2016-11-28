@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * Created by alexk on 11/14/16.
  */
-public interface TransactionRepository extends TableRepository<TransactionEntity, String> {
+public interface TransactionRepository extends DocumentRepository<TransactionEntity, String> {
     TransactionEntity findById(String id);
     boolean exists(String id);
 }
