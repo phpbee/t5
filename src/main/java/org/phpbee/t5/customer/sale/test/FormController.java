@@ -50,16 +50,18 @@ public final class FormController extends WebMvcConfigurerAdapter {
         if (bindingResult.hasErrors()) {
             return "customer/sale/test/form";
         }
-
-        TransactionEntity transaction = transactionRepository.findById(form.getTransactionId());
-        Sale sale = new Sale();
-        sale.setRequestedStatus(form.getRequestedStatus());
-        transaction.addSale(sale);
-        transactionRepository.save(transaction);
-
         try {
+            TransactionEntity transaction = transactionRepository.findById(form.getTransactionId());
+            Sale sale = new Sale(TestAuthorization.class.getName());
+
             URI returnURL = new URI(form.getReturnURL());
             returnURL = appendUri(returnURL, "saleId=" + sale.getId());
+            sale.setReturnURL(returnURL);
+
+            sale.setRequestedStatus(form.getRequestedStatus());
+            transaction.addSale(sale);
+            transactionRepository.save(transaction);
+
             return "redirect:" + returnURL.toString();
         } catch (URISyntaxException e) {
             throw new Exception(e.getMessage());

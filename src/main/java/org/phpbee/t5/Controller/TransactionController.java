@@ -3,7 +3,9 @@ package org.phpbee.t5.Controller;
 import org.phpbee.t5.Entity.Sale;
 import org.phpbee.t5.Repository.TransactionRepository;
 import org.phpbee.t5.Entity.TransactionEntity;
+import org.phpbee.t5.customer.sale.test.FormLists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -13,6 +15,11 @@ import java.net.URI;
 
 @RestController
 public class TransactionController {
+
+    @Bean
+    public FormLists requestedStatuses() {
+        return new FormLists();
+    }
 
     @Autowired
     private TransactionRepository transactionRepository;
