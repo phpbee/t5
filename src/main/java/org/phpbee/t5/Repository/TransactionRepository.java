@@ -1,12 +1,11 @@
 package org.phpbee.t5.Repository;
 
-import org.phpbee.t5.Entity.TransactionEntity;
-import org.springframework.data.repository.CrudRepository;
+import org.phpbee.t5.Entity.Transaction;
 
 /**
  * Created by alexk on 11/14/16.
  */
-public interface TransactionRepository extends DocumentRepository<TransactionEntity, String> {
-    TransactionEntity findById(String id);
+public interface TransactionRepository extends DocumentRepository<Transaction, String> {
+    Transaction findById(String id);
     boolean exists(String id);
 }

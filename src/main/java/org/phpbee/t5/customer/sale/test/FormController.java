@@ -1,6 +1,6 @@
 package org.phpbee.t5.customer.sale.test;
 
-import org.phpbee.t5.Entity.TransactionEntity;
+import org.phpbee.t5.Entity.Transaction;
 import org.phpbee.t5.Repository.TransactionRepository;
 import org.phpbee.t5.Validator.ValueInListConstraintException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,11 +50,11 @@ public final class FormController extends WebMvcConfigurerAdapter {
             return "customer/sale/test/form";
         }
         try {
-            TransactionEntity transaction = transactionRepository.findById(form.getTransactionId());
+            Transaction transaction = transactionRepository.findById(form.getTransactionId());
             TestBankSale sale = new TestBankSale(TestBankSale.class.getName());
 
             URI returnURL = new URI(form.getReturnURL());
-            returnURL = appendUri(returnURL, "saleId=" + sale.getId());
+            returnURL = appendUri(returnURL, "saleId=" + sale.getSaleId());
             sale.setReturnURL(returnURL);
 
             sale.setRequestedStatus(form.getRequestedStatus());

@@ -1,16 +1,18 @@
 package org.phpbee.t5.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.hateoas.ResourceSupport;
 
 import javax.persistence.*;
 import java.util.*;
 
 @Document(collection = "transaction")
-public class TransactionEntity {
+public class Transaction extends ResourceSupport {
 
-    public TransactionEntity() {
+    public Transaction() {
     }
 
     @Id
@@ -19,7 +21,7 @@ public class TransactionEntity {
     @Column(name = "id")
     private String id;
 
-    public String getId() {
+    public String getTransactionId() {
         return id;
     }
 
@@ -37,12 +39,13 @@ public class TransactionEntity {
 
     private HashMap<String, AbstractSale> sales = new HashMap<>();
 
+    @JsonIgnore
     public HashMap<String, AbstractSale> getSales() {
         return sales;
     }
 
     public void addSale(AbstractSale sale) {
-        sales.put(sale.getId().toString(), sale);
+        sales.put(sale.getSaleId().toString(), sale);
     }
 
     public AbstractSale findSaleById(String saleId) {
