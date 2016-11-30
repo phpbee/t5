@@ -1,6 +1,5 @@
 package org.phpbee.t5.Controller;
 
-import org.phpbee.t5.Entity.Sale;
 import org.phpbee.t5.Repository.TransactionRepository;
 import org.phpbee.t5.Entity.TransactionEntity;
 import org.phpbee.t5.customer.sale.test.FormLists;

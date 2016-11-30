@@ -5,7 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
 import java.util.*;
 
 @Document(collection = "transaction")
@@ -36,14 +35,17 @@ public class TransactionEntity {
         return new Date(created);
     }
 
-    private ArrayList<Sale> sales = new ArrayList<Sale>();
+    private HashMap<String, AbstractSale> sales = new HashMap<>();
 
-    public ArrayList<Sale> getSales() {
+    public HashMap<String, AbstractSale> getSales() {
         return sales;
     }
 
-    public void addSale(Sale sale) {
-        sales.add(sale);
+    public void addSale(AbstractSale sale) {
+        sales.put(sale.getId().toString(), sale);
     }
 
+    public AbstractSale findSaleById(String saleId) {
+        return sales.get(saleId);
+    }
 }

@@ -51,7 +51,7 @@ public final class FormController extends WebMvcConfigurerAdapter {
         }
         try {
             TransactionEntity transaction = transactionRepository.findById(form.getTransactionId());
-            Sale sale = new Sale(Sale.class.getName());
+            TestBankSale sale = new TestBankSale(TestBankSale.class.getName());
 
             URI returnURL = new URI(form.getReturnURL());
             returnURL = appendUri(returnURL, "saleId=" + sale.getId());
@@ -61,7 +61,7 @@ public final class FormController extends WebMvcConfigurerAdapter {
             transaction.addSale(sale);
             transactionRepository.save(transaction);
 
-            return "redirect:" + returnURL.toString();
+            return "redirect:" + sale.getReturnURL().toString();
         } catch (URISyntaxException e) {
             throw new Exception(e.getMessage());
         }
