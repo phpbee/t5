@@ -1,22 +1,15 @@
 package org.phpbee.t5.Controller;
 
-import org.phpbee.t5.Entity.AbstractSale;
 import org.phpbee.t5.Repository.TransactionRepository;
 import org.phpbee.t5.Entity.Transaction;
+import org.phpbee.t5.Resource.TransactionResource;
 import org.phpbee.t5.customer.sale.test.FormLists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import java.net.URI;
-
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
-
 
 @RestController
 public class TransactionController {
@@ -42,18 +35,8 @@ public class TransactionController {
     }
 
     @RequestMapping(value="/transaction/{id}", method=RequestMethod.GET)
-    public HttpEntity<Transaction> transaction(@PathVariable(value="id") String id) {
-
-        Transaction transaction = transactionRepository.findById(id);
-        transaction.add(linkTo(methodOn(TransactionController.class).transaction(id)).withSelfRel());
-        transaction.add(linkTo(methodOn(SaleController.class).getSales(id)).withRel("sales"));
-
-
-        for (AbstractSale sale : transaction.getSales().values()) {
-            transaction.add(linkTo(methodOn(SaleController.class).findById(id, sale.getSaleId().toString())).withRel("sale"));
-        }
-
-        return new ResponseEntity<>(transaction, HttpStatus.OK);
+    public TransactionResource transaction(@PathVariable(value="id") String id) {
+        return new TransactionResource(transactionRepository.findById(id));
     }
 
 }

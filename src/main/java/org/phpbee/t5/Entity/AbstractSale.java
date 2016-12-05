@@ -1,19 +1,14 @@
 package org.phpbee.t5.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.hibernate.annotations.GenericGenerator;
-import org.phpbee.t5.customer.sale.test.Form;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.hateoas.ResourceSupport;
 
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.net.URI;
 import java.util.Date;
 import java.util.UUID;
 
 @Document
-abstract public class AbstractSale extends ResourceSupport implements Sale {
+abstract public class AbstractSale implements Sale {
 
     public AbstractSale(String authorizationClass) {
         this.authorizationClass = authorizationClass;
@@ -22,8 +17,8 @@ abstract public class AbstractSale extends ResourceSupport implements Sale {
     @Id
     private UUID id = UUID.randomUUID();
 
-    public UUID getSaleId() {
-        return id;
+    public String getId() {
+        return id.toString();
     }
 
     private Long created = new Date().getTime();

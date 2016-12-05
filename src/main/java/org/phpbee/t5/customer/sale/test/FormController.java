@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -54,7 +53,7 @@ public final class FormController extends WebMvcConfigurerAdapter {
             TestBankSale sale = new TestBankSale(TestBankSale.class.getName());
 
             URI returnURL = new URI(form.getReturnURL());
-            returnURL = appendUri(returnURL, "saleId=" + sale.getSaleId());
+            returnURL = appendUri(returnURL, "saleId=" + sale.getId());
             sale.setReturnURL(returnURL);
 
             sale.setRequestedStatus(form.getRequestedStatus());

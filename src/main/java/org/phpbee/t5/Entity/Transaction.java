@@ -4,13 +4,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.hateoas.ResourceSupport;
 
 import javax.persistence.*;
 import java.util.*;
 
 @Document(collection = "transaction")
-public class Transaction extends ResourceSupport {
+public class Transaction {
 
     public Transaction() {
     }
@@ -21,7 +20,7 @@ public class Transaction extends ResourceSupport {
     @Column(name = "id")
     private String id;
 
-    public String getTransactionId() {
+    public String getId() {
         return id;
     }
 
@@ -45,7 +44,7 @@ public class Transaction extends ResourceSupport {
     }
 
     public void addSale(AbstractSale sale) {
-        sales.put(sale.getSaleId().toString(), sale);
+        sales.put(sale.getId().toString(), sale);
     }
 
     public AbstractSale findSaleById(String saleId) {
