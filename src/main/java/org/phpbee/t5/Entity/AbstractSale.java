@@ -3,7 +3,6 @@ package org.phpbee.t5.Entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Id;
 import java.util.Date;
 import java.util.UUID;
 
@@ -14,7 +13,6 @@ abstract public class AbstractSale implements Sale {
         this.authorizationClass = authorizationClass;
     }
 
-    @Id
     private UUID id = UUID.randomUUID();
 
     public String getId() {
