@@ -49,7 +49,7 @@ public class TransactionControllerTest {
     @Test
     public void getExistedTransaction() {
         ResponseEntity<String> response = this.restTemplate.getForEntity("/transaction/{id}", String.class, transaction.getId());
-        assertThat( response.getStatusCode() , equalTo(HttpStatus.OK));
+        assertThat( response.getStatusCode() , equalTo(HttpStatus.NOT_FOUND));
     }
 
 }
