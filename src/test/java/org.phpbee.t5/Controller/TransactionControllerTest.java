@@ -1,6 +1,5 @@
 package org.phpbee.t5.Controller;
 
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,23 +16,18 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(locations = "classpath:test.properties")
-//@AutoConfigureTestDatabase
 public class TransactionControllerTest {
 
     @Autowired
@@ -77,8 +71,9 @@ public class TransactionControllerTest {
     @Test
     public void getExistedTransaction() throws Exception {
         String id = transaction.getId();
-        this.mockMvc.perform(get("/transaction/{id}", id)
-                //.accept(MediaType.parseMediaType("application/json;charset=UTF-8"))
+        this.mockMvc.perform(
+                get("/transaction/{id}", id)
+                        .accept(MediaType.APPLICATION_JSON_UTF8)
         )
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -98,7 +93,6 @@ public class TransactionControllerTest {
         )
                 .andExpect(status().isCreated())
                 .andExpect(redirectedUrlPattern("http*://localhost/transaction/*"))
-        ;
         ;
 
 
