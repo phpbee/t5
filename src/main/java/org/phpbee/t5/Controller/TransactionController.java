@@ -3,7 +3,7 @@ package org.phpbee.t5.Controller;
 import org.phpbee.t5.Repository.TransactionRepository;
 import org.phpbee.t5.Entity.Transaction;
 import org.phpbee.t5.Resource.TransactionResource;
-import org.phpbee.t5.TestBank.FormLists;
+import org.phpbee.t5.TestBank.RequestedStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +15,8 @@ import java.net.URI;
 public class TransactionController {
 
     @Bean
-    public FormLists requestedStatuses() {
-        return new FormLists();
+    public RequestedStatus requestedStatuses() {
+        return new RequestedStatus();
     }
 
     @Autowired

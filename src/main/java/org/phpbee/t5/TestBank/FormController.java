@@ -2,7 +2,6 @@ package org.phpbee.t5.TestBank;
 
 import org.phpbee.t5.Entity.Transaction;
 import org.phpbee.t5.Repository.TransactionRepository;
-import org.phpbee.t5.Validator.ValueInListConstraintException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
@@ -16,19 +15,15 @@ import javax.validation.Valid;
 import java.lang.*;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
 public final class FormController extends WebMvcConfigurerAdapter {
 
     @Bean
-    public FormLists requestedStatuses() {
-        return new FormLists();
+    public RequestedStatus requestedStatuses() {
+        return new RequestedStatus();
     }
-
-    @Autowired
-    FormLists valueInListConstraintValidatorLists;
 
     @Autowired
     private TransactionRepository transactionRepository;
@@ -68,8 +63,8 @@ public final class FormController extends WebMvcConfigurerAdapter {
     }
 
     @ModelAttribute("requestedStatuses")
-    public List<String> populateFeatures() throws ValueInListConstraintException {
-        return Arrays.asList(valueInListConstraintValidatorLists.get("RequestedStatuses"));
+    public List<String> getRequestedStatuses() {
+        return RequestedStatus.values();
     }
 
     private static URI appendUri(URI oldUri, String appendQuery) throws URISyntaxException {

@@ -4,7 +4,6 @@ import org.hibernate.validator.constraints.URL;
 import org.phpbee.t5.Validator.BusinessLogicChecks;
 import org.phpbee.t5.Validator.FormatChecks;
 import org.phpbee.t5.Validator.TransactionExistsConstraint;
-import org.phpbee.t5.Validator.ValueInListConstraint;
 
 import javax.validation.GroupSequence;
 import javax.validation.constraints.NotNull;
@@ -20,7 +19,7 @@ public class Form {
     private String returnURL;
 
     @NotNull(groups = FormatChecks.class)
-    @ValueInListConstraint(groups = BusinessLogicChecks.class, name = "RequestedStatuses")
+    @RequestedStatusConstraint(groups = BusinessLogicChecks.class)
     private String requestedStatus;
 
     public String getTransactionId() {

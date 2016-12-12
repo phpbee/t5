@@ -1,16 +1,16 @@
-package org.phpbee.t5.Validator;
+package org.phpbee.t5.TestBank;
 
 import javax.validation.Constraint;
+import javax.validation.Payload;
 import java.lang.annotation.*;
 
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy=ValueInListConstraintValidator.class)
+@Constraint(validatedBy=RequestedStatusValidator.class)
 
-public @interface ValueInListConstraint {
+public @interface RequestedStatusConstraint {
     String message() default "Value not in list";
     Class[] groups() default {};
-    Class[] payload() default {};
-    String name();
+    Class<? extends Payload>[] payload() default {};
 }

@@ -14,7 +14,7 @@ import javax.validation.Constraint;
 @Constraint(validatedBy=TransactionExistsConstraintValidator.class)
 
 public @interface TransactionExistsConstraint {
-    String message() default "Transaction doesn't exists";
+    String message() default "Transaction does not exists";
     Class[] groups() default {};
     Class[] payload() default {};
 }

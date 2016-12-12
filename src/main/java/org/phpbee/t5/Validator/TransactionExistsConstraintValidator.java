@@ -26,7 +26,5 @@ public class TransactionExistsConstraintValidator implements ConstraintValidator
         return transactionRepository.exists(id);
     }
 
-    public void setTransactionRepository(TransactionRepository transactionRepository) {
-        this.transactionRepository = transactionRepository;
-    }
+
 }
