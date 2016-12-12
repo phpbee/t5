@@ -3,6 +3,7 @@ package org.phpbee.t5.Resource;
 import org.phpbee.t5.Controller.SaleController;
 import org.phpbee.t5.Controller.TransactionController;
 import org.phpbee.t5.Entity.AbstractSale;
+import org.phpbee.t5.Entity.Sale;
 import org.phpbee.t5.Entity.Transaction;
 import org.springframework.hateoas.ResourceSupport;
 
@@ -23,7 +24,7 @@ public class TransactionResource extends ResourceSupport {
         this.add(linkTo(methodOn(SaleController.class).getSales(transaction.getId())).withRel("sales"));
 
 
-        for (AbstractSale sale : transaction.getSales().values()) {
+        for (Sale sale : transaction.getSales().values()) {
             this.add(linkTo(methodOn(SaleController.class).findById(transaction.getId(), sale.getId().toString())).withRel("sale"));
         }
 

@@ -1,6 +1,6 @@
 package org.phpbee.t5.Controller;
 
-import org.phpbee.t5.Entity.AbstractSale;
+import org.phpbee.t5.Entity.Sale;
 import org.phpbee.t5.Entity.Transaction;
 import org.phpbee.t5.Repository.TransactionRepository;
 import org.phpbee.t5.Resource.SaleResource;
@@ -21,7 +21,7 @@ public class SaleController {
     @RequestMapping(value = "/transaction/{transactionId}/sale/{saleId}", method = RequestMethod.GET)
     public SaleResource findById(@PathVariable(value = "transactionId") String transactionId, @PathVariable(value = "saleId") String saleId) {
         Transaction transaction = transactionRepository.findById(transactionId);
-        AbstractSale sale = transaction.findSaleById(saleId);
+        Sale sale = transaction.findSaleById(saleId);
 
         return new SaleResource(sale, transactionId);
     }
@@ -30,10 +30,10 @@ public class SaleController {
     @RequestMapping(value = "/transaction/{id}/sales", method = RequestMethod.GET)
     public Resources<SaleResource> getSales(@PathVariable(value = "id") String id) {
 
-        HashMap<String, AbstractSale> sales = transactionRepository.findById(id).getSales();
+        HashMap<String, Sale> sales = transactionRepository.findById(id).getSales();
         ArrayList<SaleResource> resourceList = new ArrayList<>();
 
-        for (AbstractSale sale : sales.values()) {
+        for (Sale sale : sales.values()) {
             resourceList.add(new SaleResource(sale, id));
         }
 

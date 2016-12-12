@@ -29,18 +29,18 @@ public class Transaction {
         return new Date(created);
     }
 
-    private HashMap<String, AbstractSale> sales = new HashMap<>();
+    private HashMap<String, Sale> sales = new HashMap<>();
 
     @JsonIgnore
-    public HashMap<String, AbstractSale> getSales() {
+    public HashMap<String, Sale> getSales() {
         return sales;
     }
 
-    public void addSale(AbstractSale sale) {
+    public void addSale(Sale sale) {
         sales.put(sale.getId().toString(), sale);
     }
 
-    public AbstractSale findSaleById(String saleId) {
+    public Sale findSaleById(String saleId) {
         return sales.get(saleId);
     }
 }
