@@ -3,7 +3,7 @@ package org.phpbee.t5.Controller;
 import org.phpbee.t5.Repository.TransactionRepository;
 import org.phpbee.t5.Entity.Transaction;
 import org.phpbee.t5.Resource.TransactionResource;
-import org.phpbee.t5.customer.sale.test.FormLists;
+import org.phpbee.t5.TestBank.FormLists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;

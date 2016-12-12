@@ -1,4 +1,4 @@
-package org.phpbee.t5.customer.sale.test;
+package org.phpbee.t5.TestBank;
 
 import org.phpbee.t5.Entity.Transaction;
 import org.phpbee.t5.Repository.TransactionRepository;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import javax.validation.Valid;
+import java.lang.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
@@ -37,16 +38,16 @@ public final class FormController extends WebMvcConfigurerAdapter {
         registry.addViewController("/results").setViewName("results");
     }
 
-    @GetMapping("/customer/sale/test")
+    @GetMapping("/TestBank/sale")
     public String showForm(Form form) {
-        return "customer/sale/test/form";
+        return "TestBank/sale/form";
     }
 
-    @PostMapping("/customer/sale/test")
+    @PostMapping("/TestBank/sale")
     public String checkForm(@Valid Form form, BindingResult bindingResult) throws Exception {
 
         if (bindingResult.hasErrors()) {
-            return "customer/sale/test/form";
+            return "TestBank/sale/form";
         }
         try {
             Transaction transaction = transactionRepository.findById(form.getTransactionId());

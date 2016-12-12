@@ -1,4 +1,4 @@
-package org.phpbee.t5.customer.sale.test;
+package org.phpbee.t5.TestBank;
 
 import org.hibernate.validator.constraints.URL;
 import org.phpbee.t5.Validator.BusinessLogicChecks;

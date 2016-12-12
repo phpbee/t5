@@ -1,4 +1,4 @@
-package org.phpbee.t5.customer.sale.test;
+package org.phpbee.t5.TestBank;
 
 import org.phpbee.t5.Validator.ValueInListConstraintException;
 import org.phpbee.t5.Validator.ValueInListConstraintValidatorLists;
