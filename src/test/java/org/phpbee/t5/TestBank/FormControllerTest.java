@@ -1,5 +1,6 @@
 package org.phpbee.t5.TestBank;
 
+import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,10 +19,12 @@ import org.springframework.web.context.WebApplicationContext;
 import java.lang.Exception;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrlPattern;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
+import static org.hamcrest.Matchers.containsString;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -40,6 +43,9 @@ public class FormControllerTest {
     private WebApplicationContext wac;
 
     private MockMvc mockMvc;
+
+
+    private String returnUrl = "http://localhost/sale";
 
     @Bean
     public TransactionRepository transactionRepository() {
@@ -62,7 +68,6 @@ public class FormControllerTest {
 
     @Test
     public void postSale() throws Exception {
-        String returnUrl = "http://localhost/sale";
         this.mockMvc.perform(post("/TestBank/sale")
                 .param("transactionId", transaction.getId())
                 .param("requestedStatus", "Approved")
@@ -74,6 +79,49 @@ public class FormControllerTest {
 
 
     }
+
+    @Test
+    public void postEmptyForm() throws Exception {
+        this.mockMvc.perform(post("/TestBank/sale")
+                .param("transactionId", "")
+                .param("returnURL", "")
+        )
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("may not be null")));
+        ;
+
+
+    }
+
+
+    @Test
+    public void postInvalidURL() throws Exception {
+        this.mockMvc.perform(post("/TestBank/sale")
+                .param("transactionId", transaction.getId())
+                .param("requestedStatus", "Approved")
+                .param("returnURL", "726872678")
+        )
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("must be a valid URL")))
+        ;
+
+
+    }
+
+    @Test
+    public void postUnexistedTransactionID() throws Exception {
+        this.mockMvc.perform(post("/TestBank/sale")
+                .param("transactionId", "nonexistent")
+                .param("requestedStatus", "Declined")
+                .param("returnURL", returnUrl)
+        )
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Transaction does not exists")))
+        ;
+
+
+    }
+
 
 
 }
